@@ -117,7 +117,7 @@
 									<!--end::Menu separator-->
 									<!--begin::Menu item-->
 									<div class="menu-item px-5">
-										<a href="profile.php" class="menu-link px-5">My Profile</a>
+										<a href="profile.php" class="menu-link px-5">Akun</a>
 									</div>
 									<!--end::Menu item-->
 									<!--begin::Menu separator-->

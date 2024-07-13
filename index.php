@@ -23,7 +23,7 @@
 									<!--begin::Card widget 8-->
 									<div class="card overflow-hidden mb-5 mb-xl-10">
 										<!--begin::Card body-->
-										<div class="card-body d-flex justify-content-between flex-column px-0 pb-0">
+										<a class="card-body d-flex justify-content-between flex-column px-0 pb-0" href="isbn_data.php">
 											<!--begin::Statistics-->
 											<div class="mb-10 px-9">
 												<!--begin::Info-->
@@ -38,7 +38,7 @@
 												<!--end::Description-->
 											</div>
 											<!--end::Statistics-->
-										</div>
+										</a>
 										<!--end::Card body-->
 									</div>
 								</div>
@@ -72,7 +72,7 @@
 									<!--begin::Card widget 5-->
 									<div class="card bg-gray-100 overflow-hidden mb-5 mb-xl-10">
 										<!--begin::Header-->
-										<div class="card-body d-flex justify-content-between flex-column px-0 pb-0">
+										<a class="card-body d-flex justify-content-between flex-column px-0 pb-0" href="isbn_baru">
 											<!--begin::Title-->
 											<div class="mb-10 px-9">
 												<!--begin::Info-->
@@ -87,7 +87,7 @@
 												<!--end::Subtitle-->
 											</div>
 											<!--end::Title-->
-										</div>
+										</a>
 										<!--end::Header-->
 									</div>
 								</div>
@@ -97,7 +97,7 @@
 									<div class="card bg-danger overflow-hidden mb-5 mb-xl-10">
 										<!--begin::Card body-->
 										<a class="card-body d-flex justify-content-between flex-column px-0 pb-0"
-											href="isbn_masalah.html">
+											href="isbn_masalah.php">
 											<!--begin::Statistics-->
 											<div class="mb-10 px-9">
 												<!--begin::Statistics-->

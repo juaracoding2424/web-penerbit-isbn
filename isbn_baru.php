@@ -1,4 +1,11 @@
 <?php include 'header.php';?>
+<link rel="stylesheet" href="https://cdn.datatables.net/fixedcolumns/5.0.1/css/fixedColumns.dataTables.css">
+<style>
+	.select-costum {
+		padding-top: 3px;
+		padding-bottom: 3px;
+	}
+</style>
 <!--begin::Wrapper-->
 <div class="app-wrapper d-flex" id="kt_app_wrapper">
 	<!--begin::Sidebar-->
@@ -10,14 +17,98 @@
 		<div class="d-flex flex-column flex-column-fluid">
 			<!--begin::Content-->
 			<div id="kt_app_content" class="app-content">
+			<div id="kt_app_toolbar" class="app-toolbar pt-7 pt-lg-10">
+				<!--begin::Toolbar container-->
+				<div id="kt_app_toolbar_container" class="app-container container-fluid d-flex align-items-stretch">
+					<!--begin::Toolbar wrapper-->
+					<div class="app-toolbar-wrapper d-flex flex-stack flex-wrap gap-4 w-100">
+						<!--begin::Page title-->
+						<div class="page-title d-flex flex-column justify-content-center gap-1 me-3">
+							<!--begin::Title-->
+							<h1 class="page-heading d-flex flex-column justify-content-center text-gray-900 fw-bold fs-3 m-0">
+								Data ISBN</h1>
+							<!--end::Title-->
+							<!--begin::Breadcrumb-->
+							<ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0">
+								<!--begin::Item-->
+								<li class="breadcrumb-item text-muted">
+									<a href="index.php" class="text-muted text-hover-primary">Home</a>
+								</li>
+								<!--end::Item-->
+								<!--begin::Item-->
+								<li class="breadcrumb-item">
+									<span class="bullet bg-gray-500 w-5px h-2px"></span>
+								</li>
+								<!--end::Item-->
+								<!--begin::Item-->
+								<li class="breadcrumb-item text-muted">Data ISBN</li>
+								<!--end::Item-->
+								<!--begin::Item-->
+								<li class="breadcrumb-item">
+									<span class="bullet bg-gray-500 w-5px h-2px"></span>
+								</li>
+								<!--end::Item-->
+								<!--begin::Item-->
+								<li class="breadcrumb-item text-muted">Permohonan BARU</li>
+								<!--end::Item-->
+							</ul>
+							<!--end::Breadcrumb-->
+						</div>
+						<!--end::Page title-->
+					</div>
+					<!--end::Toolbar wrapper-->
+				</div>
+				<!--end::Toolbar container-->
+			</div>
 				<!--begin::Content container-->
 				<div id="kt_app_content_container" class="app-container container-fluid">
-					<!--begin::Row-->
-					<div class="row g-5 gx-xl-10">
+					<!--begin::Products-->
+					<div class="card card-flush">
+						<!--begin::Card header-->
+						<div class="card-header align-items-center py-5 gap-2 gap-md-5">
+							<!--begin::Card title-->
+							<div class="card-title">
+								<!--begin::Search-->
+								<div class="d-flex align-items-center position-relative my-1">
+									<i class="ki-outline ki-magnifier fs-3 position-absolute ms-4"></i>
+									<input type="text" data-example-filter="search" class="form-control form-control-solid w-400px ps-12" 
+									placeholder="Search Judul, ISBN, Pengarang, etc" />
+								</div>
+												<!--end::Search-->
+							</div>
+							<!--end::Card title-->
+							<!--begin::Card toolbar-->
+							<div class="card-toolbar flex-row-fluid justify-content-end gap-5">
+								<!--begin::Add product-->
+								<a href="tambah-isbn.php" class="btn btn-primary">Tambah Permohonan ISBN</a>
+								<!--end::Add product-->
+							</div>
+							<!--end::Card toolbar-->
+						</div>
+						<!--end::Card header-->
+						<!--begin::Card body-->
+						<div class="card-body pt-0">
+							<!--begin::Table-->
+							<div class ="table-responsive">
+							<table class="table table-striped table-bordered table-hover no-wrap fs-7 gy-5" id="example" style="width:100%">
+								<thead>
+									<tr class="text-start text-gray-500 fw-bold fs-7 text-uppercase gs-0">
+										<th class="text-start min-w-60px pe-2">No</th>
+										<th class="min-w-200px">Judul</th>
+										<th class="min-w-200px">Kepengarangan</th>
+										<th class="min-w-200px">Bulan/Tahun Terbit</th>
+										<th class="min-w-200px">Tanggal Permohonan</th>
+										<th class="text-inline min-w-150px">Actions</th>										
+									</tr>
+								</thead>
 
+							</table>
+							</div>
+							<!--end::Table-->
+						</div>
+						<!--end::Card body-->
 					</div>
-					<!--end::Row-->
-
+					<!--end::Products-->
 				</div>
 				<!--end::Content container-->
 			</div>
@@ -75,168 +166,127 @@
 <script src="assets/js/scripts.bundle.js"></script>
 <!--end::Global Javascript Bundle-->
 <!--begin::Vendors Javascript(used for this page only)-->
-<script src="assets/plugins/custom/fullcalendar/fullcalendar.bundle.js"></script>
-<script src="https://cdn.amcharts.com/lib/5/index.js"></script>
-<script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
-<script src="https://cdn.amcharts.com/lib/5/percent.js"></script>
-<script src="https://cdn.amcharts.com/lib/5/radar.js"></script>
-<script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
-<script src="https://cdn.amcharts.com/lib/5/map.js"></script>
-<script src="https://cdn.amcharts.com/lib/5/geodata/worldLow.js"></script>
-<script src="https://cdn.amcharts.com/lib/5/geodata/continentsLow.js"></script>
-<script src="https://cdn.amcharts.com/lib/5/geodata/usaLow.js"></script>
-<script src="https://cdn.amcharts.com/lib/5/geodata/worldTimeZonesLow.js"></script>
-<script src="https://cdn.amcharts.com/lib/5/geodata/worldTimeZoneAreasLow.js"></script>
 <script src="assets/plugins/custom/datatables/datatables.bundle.js"></script>
+<script src="https://cdn.datatables.net/fixedcolumns/5.0.1/js/dataTables.fixedColumns.js"></script>
 <!--end::Vendors Javascript-->
 <!--begin::Custom Javascript(used for this page only)-->
+<!--script src="assets/js/custom/apps/ecommerce/sales/listing.js"></script-->
 <script src="assets/js/widgets.bundle.js"></script>
 <script src="assets/js/custom/widgets.js"></script>
+<script src="assets/js/custom/apps/chat/chat.js"></script>
+<!--<script src="assets/js/custom/utilities/modals/upgrade-plan.js"></script>
+<script src="assets/js/custom/utilities/modals/create-campaign.js"></script>
+<script src="assets/js/custom/utilities/modals/users-search.js"></script>-->
+<script src="assets/js/custom/randomtitle.js"></script>
+<script src="assets/js/custom/randomname.js"></script>
 <!--end::Custom Javascript-->
 <!--end::Javascript-->
 </body>
 <!--end::Body-->
 <script>
+	var generateISBN13 = function() {
+		// Generate the first 9 digits of the ISBN randomly.
+		var digits = Array(9).fill(0).map(function () {
+			return Math.floor(Math.random() * 10);
+		});
 
-	var chart_isbn_month = function () {
-		var e = document.getElementById("chart_isbn_month");
-
-		if (e) {
-			var t, a = function () {
-				var dataChart = generateData();
-				(t = am5.Root.new(e)).setThemes([am5themes_Animated.new(t)]);
-				var a = t.container.children.push(am5xy.XYChart.new(t, {
-					panX: !1,
-					panY: !1,
-					layout: t.verticalLayout
-				})),
-					l = (a.get("colors"), dataChart),
-					r = a.xAxes.push(am5xy.CategoryAxis.new(t, {
-						categoryField: "month",
-						renderer: am5xy.AxisRendererX.new(t, {
-							minGridDistance: 30
-						}),
-						bullet: function (e, t, a) {
-							return am5xy.AxisBullet.new(e, {
-								location: .5,
-								sprite: am5.Picture.new(e, {
-									width: 24,
-									height: 24,
-									centerY: am5.p50,
-									centerX: am5.p50,
-								})
-							})
-						}
-					}));
-				r.get("renderer").labels.template.setAll({
-					paddingTop: 20,
-					fontWeight: "400",
-					fontSize: 10,
-					fill: am5.color(KTUtil.getCssVariableValue("--bs-gray-500"))
-				}), r.get("renderer").grid.template.setAll({
-					disabled: !0,
-					strokeOpacity: 0
-				}), r.data.setAll(l);
-				var o = a.yAxes.push(am5xy.ValueAxis.new(t, {
-					renderer: am5xy.AxisRendererY.new(t, {})
-				}));
-				o.get("renderer").grid.template.setAll({
-					stroke: am5.color(KTUtil.getCssVariableValue("--bs-gray-300")),
-					strokeWidth: 1,
-					strokeOpacity: 1,
-					strokeDasharray: [3]
-				}), o.get("renderer").labels.template.setAll({
-					fontWeight: "400",
-					fontSize: 10,
-					fill: am5.color(KTUtil.getCssVariableValue("--bs-gray-500"))
-				});
-				var i = a.series.push(am5xy.ColumnSeries.new(t, {
-					xAxis: r,
-					yAxis: o,
-					valueYField: "counts",
-					categoryXField: "month"
-				}));
-				i.columns.template.setAll({
-					tooltipText: "{categoryX}: {valueY}",
-					tooltipY: 0,
-					strokeOpacity: 0,
-					templateField: "columnSettings"
-				}), i.columns.template.setAll({
-					strokeOpacity: 0,
-					cornerRadiusBR: 0,
-					cornerRadiusTR: 6,
-					cornerRadiusBL: 0,
-					cornerRadiusTL: 6
-				}), i.data.setAll(l), i.appear(), a.appear(1e3, 100)
-			};
-			am5.ready((function () {
-				a()
-			})), KTThemeMode.on("kt.thememode.change", (function () {
-				t.dispose(), a()
-			}))
+		// Calculate the checksum for the ISBN.
+		var checksum = 0;
+		for (var i = 0; i < 9; i++) {
+			checksum += digits[i] * (10 - i);
 		}
-	}
-	chart_isbn_month();
+		checksum = 10 - (checksum % 10);
 
+		// Add the checksum to the end of the digits array.
+		digits.push(checksum);
+
+		// Return the ISBN as a string.
+		return digits.join("");
+	};
+	var batalkanPermohonan = function(i){
+		r = dataSet[i][1];
+		Swal.fire({
+                    html: "Anda yakin akan membatalkan permohonan ISBN, dengan <b>judul</b>: <span class='badge badge-info'> "+r+" </span>?",
+					icon: "warning",
+                    showCancelButton: !0,
+                    buttonsStyling: !1,
+                    confirmButtonText: "Ya, batalkan!",
+                    cancelButtonText: "Tidak",
+                    customClass: {
+                        confirmButton: "btn fw-bold btn-danger",
+                        cancelButton: "btn fw-bold btn-active-light-primary"
+                    }
+                }).then((function(e) {
+                        e.value ? Swal.fire({
+                            html: "Anda membatalkan permohonan ISBN, dengan <b>judul</b>: <span class='badge badge-info'>" + r + "</span>!.",
+                            icon: "success",
+                            buttonsStyling: !1,
+                            confirmButtonText: "Ok, got it!",
+                            customClass: {
+                                confirmButton: "btn fw-bold btn-primary"
+                            }
+                        }).then((function() {
+                            t.row($(n)).remove().draw()
+                        })) : "cancel" === e.dismiss && Swal.fire({
+							html: "<span class='badge badge-info'>" + r + "</span> tidak jadi dibatalkan.",
+                            icon: "error",
+                            buttonsStyling: !1,
+                            confirmButtonText: "Ok, got it!",
+                            customClass: {
+                                confirmButton: "btn fw-bold btn-primary"
+                            }
+                        })
+                    }))
+	};
 	var getRandom = function (min, max) {
 		return Math.floor(Math.random() * (max - min) + min);
 	};
-	var changeChart = function (year) {
-		$('#title_chart').html("Data ISBN " + year + " Penerbit Gramedia");
-		var dataChart = generateData();
-		am5.array.each(am5.registry.rootElements,
-			function (root) {
-				if (root.dom.id == "chart_isbn_month") {
-					root.dispose();
-					chart_isbn_month()
-				}
-			}
-		);
+	var randomDate = function(start, end) {
+		return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime())).toLocaleString();
+	}
+	var rolePengarang = [
+		'penulis', 'penyunting', 'penyusun', 'ilustrator', 'alih bahasa', 'editor'
+	]
+	var populateKepengarangan = function(){
+		var jmlPengarang = getRandom(1,5);
+		var pengarang = '';
+		for( var i = 0; i < jmlPengarang; i++){
+			const name = RandomName();
+			pengarang += rolePengarang[getRandom(0,6)] + ", " + name + "; ";
+		}
+		return pengarang.slice(0, -2);
+	}
+	var populateDataSet = function(numb){
+		var dataSetPop = [];
+		for( var i = 1; i<=numb; i++ ){
+			dataSetPop.push([
+				i.toString(),
+				RandomTitle(),
+				populateKepengarangan(),
+				Intl.DateTimeFormat('id', { month: 'short' }).format(new Date(getRandom(6,12).toString())) + " " + getRandom(2024,2025).toString(),
+				randomDate(new Date(2024, 5, 1), new Date()),
+				'<a class="badge badge-danger h-30px m-1" onclick="batalkanPermohonan('+(i-1)+')">Batalkan Permohonan</a>',
+			]);
+		}
+		return dataSetPop;
+	};
+	
+	const dataSet = populateDataSet(getRandom(1,15));
 
-	};
-	var generateData = function () {
-		var dataChart = [];
-		for (var d = 0; d < 12; d++) {
-			var d_ = d + 1;
-			dataChart = dataChart.concat({
-				month: Intl.DateTimeFormat('en', { month: 'short' }).format(new Date(d_.toString())),
-				counts: getRandom(0, 20),
-				columnSettings: {
-					fill: am5.color(KTUtil.getCssVariableValue("--bs-primary"))
-				}
-			});
-		}
-		return dataChart;
-	};
-	var includeHTML = function () {
-		var z, i, elmnt, file, xhttp;
-		/*loop through a collection of all HTML elements:*/
-		z = document.getElementsByTagName("*");
-		for (i = 0; i < z.length; i++) {
-			elmnt = z[i];
-			/*search for elements with a certain attribute:*/
-			file = elmnt.getAttribute("include-html");
-			if (file) {
-				/*make an HTTP request using the attribute value as the file name:*/
-				xhttp = new XMLHttpRequest();
-				xhttp.onreadystatechange = function () {
-					if (this.readyState == 4) {
-						if (this.status == 200) { elmnt.innerHTML = this.responseText; }
-						if (this.status == 404) { elmnt.innerHTML = "Page not found."; }
-						/*remove the attribute, and call this function once more:*/
-						elmnt.removeAttribute("include-html");
-						includeHTML();
-					}
-				}
-				xhttp.open("GET", file, true);
-				xhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
-				xhttp.send();
-				/*exit the function:*/
-				return;
-			}
-		}
-	};
-	includeHTML();
+	var t = new DataTable('#example', {
+		data: dataSet,
+		scrollX: true,
+		"searching": true,
+		filter:true,
+		fixedColumns: {
+            start: 3,
+            end: 0
+        },
+	});
+	document.querySelector('[data-example-filter="search"]').addEventListener("keyup", (function(e) {
+                t.search(e.target.value).draw()
+            }))
+	
 </script>
 
 </html>

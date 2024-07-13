@@ -5,6 +5,9 @@
 		padding-top: 3px;
 		padding-bottom: 3px;
 	}
+	#example td:nth-of-type(6) {
+  		background-color:var(--bs-danger-light);
+	}
 </style>
 <!--begin::Wrapper-->
 <div class="app-wrapper d-flex" id="kt_app_wrapper">
@@ -80,7 +83,7 @@
 							<!--begin::Card toolbar-->
 							<div class="card-toolbar flex-row-fluid justify-content-end gap-5">
 								<!--begin::Add product-->
-								<a href="tambah-isbn.php" class="btn btn-primary">Tambah Permohonan ISBN</a>
+								<a href="tambah_isbn.php" class="btn btn-primary">Tambah Permohonan ISBN</a>
 								<!--end::Add product-->
 							</div>
 							<!--end::Card toolbar-->
@@ -90,15 +93,15 @@
 						<div class="card-body pt-0">
 							<!--begin::Table-->
 							<div class ="table-responsive">
-							<table class="table table-striped table-bordered table-hover no-wrap fs-7 gy-5" id="example" style="width:100%">
+							<table class="table table-row-dashed table-hover no-wrap fs-8 gy-5" id="example" style="width:100%">
 								<thead>
-									<tr class="text-start text-gray-500 fw-bold fs-7 text-uppercase gs-0">
-										<th class="text-start min-w-60px pe-2">No</th>
+									<tr class="text-start text-gray-500 fw-bold fs-8 text-uppercase gs-0">
+										<th class="text-start min-w-60px pe-2">ID</th>
 										<th class="min-w-200px">Judul</th>
 										<th class="min-w-200px">Kepengarangan</th>
 										<th class="min-w-200px">Bulan/Tahun Terbit</th>
 										<th class="min-w-200px">Tanggal Permohonan</th>
-										<th class="min-w-200px">Masalah</th>
+										<th class="min-w-200px bg-light-danger">Masalah</th>
 										<th class="text-inline min-w-150px">Actions</th>										
 									</tr>
 								</thead>
@@ -237,8 +240,13 @@
 		}
 		return pengarang.slice(0, -2);
 	}
+	var extractColumn = function(arr, column) {
+		return arr.map(x => x[column]);
+	}
 	var batalkanPermohonan = function(i){
-		r = dataSet[i][1];
+		let arrNomor = extractColumn(dataSet, 0);
+		let position = arrNomor.indexOf((i+1).toString());
+		let r = dataSet[position][1];
 		Swal.fire({
                     html: "Anda yakin akan membatalkan permohonan ISBN, dengan <b>judul</b>: <span class='badge badge-info'> "+r+" </span>?",
 					icon: "warning",
@@ -250,28 +258,33 @@
                         confirmButton: "btn fw-bold btn-danger",
                         cancelButton: "btn fw-bold btn-active-light-primary"
                     }
-                }).then((function(e) {
-                        e.value ? Swal.fire({
-                            html: "Anda membatalkan permohonan ISBN, dengan <b>judul</b>: <span class='badge badge-info'>" + r + "</span>!.",
-                            icon: "success",
-                            buttonsStyling: !1,
-                            confirmButtonText: "Ok, got it!",
-                            customClass: {
-                                confirmButton: "btn fw-bold btn-primary"
-                            }
-                        }).then((function() {
-                            t.row($(n)).remove().draw()
-                        })) : "cancel" === e.dismiss && Swal.fire({
-                            html: "<span class='badge badge-info'>" + r + "</span> tidak jadi dibatalkan.",
-                            icon: "error",
-                            buttonsStyling: !1,
-                            confirmButtonText: "Ok, got it!",
-                            customClass: {
-                                confirmButton: "btn fw-bold btn-primary"
-                            }
-                        })
-                    }))
-	};
+            }).then(function(e) {
+						if(e.isConfirmed == true) {
+							Swal.fire({
+								html: "Anda membatalkan permohonan ISBN, dengan <b>judul</b>: <span class='badge badge-info'>" + r + "</span>!.",
+								icon: "success",
+								buttonsStyling: !1,
+								confirmButtonText: "Ok, got it!",
+								customClass: {
+									confirmButton: "btn fw-bold btn-primary"
+								}
+							})
+							dataSet.splice(position,1);
+							t.destroy();
+							loadDataTable();
+						} else {
+							Swal.fire({
+								html: "<span class='badge badge-info'>" + r + "</span> tidak jadi dibatalkan.",
+								icon: "error",
+								buttonsStyling: !1,
+								confirmButtonText: "Ok, got it!",
+								customClass: {
+									confirmButton: "btn fw-bold btn-primary"
+								}
+                        	});
+						}
+            });
+	}
 	var populateDataSet = function(numb){
 		var dataSetPop = [];
 		for( var i = 1; i<=numb; i++ ){
@@ -289,20 +302,23 @@
 	};
 	
 	const dataSet = populateDataSet(getRandom(1,6));
-
-	var t = new DataTable('#example', {
-		data: dataSet,
-		scrollX: true,
-		"searching": true,
-		filter:true,
-		fixedColumns: {
-            start: 3,
-            end: 0
-        },
-	});
+	var t;
+	var loadDataTable = function(){
+		t = new DataTable('#example', {
+			data: dataSet,
+			scrollX: true,
+			"searching": true,
+			filter:true,
+			fixedColumns: {
+				start: 2,
+				end: 0
+			},
+		});
+	}
 	document.querySelector('[data-example-filter="search"]').addEventListener("keyup", (function(e) {
                 t.search(e.target.value).draw()
             }))
+	loadDataTable();
 	
 </script>
 

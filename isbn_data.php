@@ -1,6 +1,7 @@
 <?php include 'header.php';?>
 <link rel="stylesheet" href="https://cdn.datatables.net/fixedcolumns/5.0.1/css/fixedColumns.dataTables.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.0.2/css/buttons.dataTables.css">
+<link rel="stylesheet" href="assets/css/swal-forms.css">
 <style>
 	.select-costum {
 		padding-top: 3px;
@@ -98,8 +99,8 @@
 							<!--begin::Card toolbar-->
 							<div class="card-toolbar flex-row-fluid justify-content-end gap-5">
 								<!--begin::Add product-->
-								<a href="#" class="btn btn-success" id="unduhExcel"><i class="ki-duo-tone fs-2x ki-file"></i>Unduh Data ISBN</a>
-								<a href="tambah-isbn.php" class="btn btn-primary">Tambah Permohonan ISBN</a>
+								<span id="unduhExcel"></span>
+								<a href="tambah_isbn.php" class="btn btn-primary">Tambah Permohonan ISBN</a>
 								<!--end::Add product-->
 							</div>
 							<!--end::Card toolbar-->
@@ -109,10 +110,10 @@
 						<div class="card-body pt-0">
 							<!--begin::Table-->
 							<div class ="table-responsive">
-							<table class="table table-striped table-bordered table-hover no-wrap fs-7 gy-5" id="example" style="width:100%">
+							<table class="table table-row-dashed table-hover no-wrap fs-8 gy-5" id="example" style="width:100%">
 								<thead>
-									<tr class="text-start text-gray-500 fw-bold fs-7 text-uppercase gs-0">
-										<th class="text-start min-w-60px pe-2">No</th>
+									<tr class="text-start text-gray-500 fw-bold fs-8 text-uppercase gs-0">
+										<th class="text-start min-w-60px pe-2">ID</th>
 										<th class="min-w-100px">ISBN</th>
 										<th class="min-w-200px">Judul</th>
 										<th class="min-w-200px">Kepengarangan</th>
@@ -193,21 +194,12 @@
 <!--begin::Vendors Javascript(used for this page only)-->
 <script src="assets/plugins/custom/datatables/datatables.bundle.js"></script>
 <script src="https://cdn.datatables.net/fixedcolumns/5.0.1/js/dataTables.fixedColumns.js"></script>
-<script src="https://cdn.datatables.net/buttons/3.0.2/js/dataTables.buttons.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
-<script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.html5.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.print.min.js"></script>
+<script src="assets/js/swal-forms.js"></script>
 <!--end::Vendors Javascript-->
 <!--begin::Custom Javascript(used for this page only)-->
-<!--script src="assets/js/custom/apps/ecommerce/sales/listing.js"></script-->
 <script src="assets/js/widgets.bundle.js"></script>
 <script src="assets/js/custom/widgets.js"></script>
 <script src="assets/js/custom/apps/chat/chat.js"></script>
-<!--<script src="assets/js/custom/utilities/modals/upgrade-plan.js"></script>
-<script src="assets/js/custom/utilities/modals/create-campaign.js"></script>
-<script src="assets/js/custom/utilities/modals/users-search.js"></script>-->
 <script src="assets/js/custom/randomtitle.js"></script>
 <script src="assets/js/custom/randomname.js"></script>
 <!--end::Custom Javascript-->
@@ -240,6 +232,19 @@
 	var randomDate = function(start, end) {
 		return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime())).toLocaleString();
 	}
+	var images = [
+		'https://m.media-amazon.com/images/I/81jRqrKKObL._AC_UL800_FMwebp_QL65_.jpg',
+		'https://m.media-amazon.com/images/I/81JgX8VgZiL._AC_UL800_FMwebp_QL65_.jpg',
+		'https://m.media-amazon.com/images/I/71CBWHK035L._AC_UL800_FMwebp_QL65_.jpg',
+		'https://m.media-amazon.com/images/I/91pXKpUfGgL._AC_UL800_FMwebp_QL65_.jpg',
+		'https://m.media-amazon.com/images/I/41On-kU2qfL._AC_SF480,480_.jpg',
+		'https://m.media-amazon.com/images/I/51J+Tc3E1eL._AC_SF480,480_.jpg',
+		'https://m.media-amazon.com/images/I/51XBtKdStML._AC_SF480,480_.jpg',
+		'https://m.media-amazon.com/images/I/41CSLTOp7LL._AC_SF480,480_.jpg',
+		'https://m.media-amazon.com/images/I/51l-BqdoMsL._UX300undefined_.jpg',
+		'https://m.media-amazon.com/images/I/510GvscKODL._AC_SF480,480_.jpg',
+		'https://m.media-amazon.com/images/I/41PUsvw0kuL._AC_SF480,480_.jpg'
+	];
 	var cetakBarcode = function(){
 		Swal.fire({
                     text: "Kami sudah mengirimkan barcode melalui email Anda!",
@@ -296,10 +301,10 @@
 			dataSetPop.push([
 				i.toString(),
 				generateISBN13(),
-				RandomTitle(),
+				'<div class="d-flex align-items-center"><img src='+images[getRandom(0,11)]+' class=" symbol h-50px"></img><span class="ms-5"> ' + RandomTitle() + '</span></div>',
 				populateKepengarangan(),
 				Intl.DateTimeFormat('id', { month: 'short' }).format(new Date(getRandom(1,12).toString())) + " " + getRandom(2022,2024).toString(),
-				'<select class="form-select fs-7 select-costum><option value"">--Pilih status--</option><option value="belum terbit">Belum Terbit</option><option value="terbit">Sudah Terbit</option><option value="batal">Batal Terbit</option></select>', 
+				'<select class="form-select fs-7 select-costum" id="changeStatus_'+(i-1)+'" onChange="changeStatus('+(i-1)+')"><option value"">--Pilih status--</option><option value="belum terbit">Belum Terbit</option><option value="terbit">Sudah Terbit</option><option value="batal">Batal Terbit</option></select>', 
 				randomDate(new Date(2020, 0, 1), new Date(2022, 12, 31)),
 				randomDate(new Date(2023, 0, 1), new Date(2024, 2, 20)),
 				'<a class="badge badge-info h-30px m-1" onclick="cetakBarcode()">Barcode</a><a class="badge badge-primary h-30px m-1" onClick="cetakKDT()">KDT</a>',
@@ -308,24 +313,118 @@
 			]);
 		}
 		return dataSetPop;
+	}	
+	var extractColumn = function(arr, column) {
+		return arr.map(x => x[column]);
+	}
+
+	var changeStatus = function(selectId){
+		if($('#changeStatus_' + selectId).val() == 'batal'){
+			let arrNomor = extractColumn(dataSet, 0);
+			let position = arrNomor.indexOf((selectId+1).toString());
+			r = dataSet[position][2];
+			r = r.replace("d-flex ", "");
+			Swal.fire({
+                    html: "Anda yakin akan membatalkan ISBN berikut? "+r,
+					icon: "warning",
+                    showCancelButton: !0,
+                    buttonsStyling: !1,
+                    confirmButtonText: "Ya, batalkan!",
+                    cancelButtonText: "Tidak",
+                    customClass: {
+                        confirmButton: "btn fw-bold btn-danger",
+                        cancelButton: "btn fw-bold btn-active-light-primary"
+                    }
+				}).then(function(e){
+					if(e.isConfirmed == true) {
+						Swal.fire({
+							title: 'Konfirmasi alasan pembatalan',
+							html: '<textarea id="alasan" cols="40" class="swal2-input" placeholder="Masukan alasan pembatalan ISBN" style="height:150px"></textarea>',
+							width:600,
+							showCancelButton: true,
+							confirmButtonColor: '#DD6B55',
+							confirmButtonText: 'Simpan Alasan Pembatalan ISBN',
+							preConfirm: () => {
+								const alasan = $('#alasan').val();
+								if (alasan.length < 150) {
+									Swal.showValidationMessage('Alasan pembatalan ISBN harus lebih dari 150 karakter!');
+								}
+								return { alasan }
+							},
+						}).then(
+							function(e){
+								if(e.isConfirmed == true){
+									dataSet[selectId][5] = '<span class="badge badge-danger fs-5" tooltip="true" title="'+$('#alasan').val()+'">ISBN DIBATALKAN</span>';
+									t.destroy();
+									loadDataTable();
+									Swal.fire({
+										html: r + " <h1>TELAH DIBATALKAN</h1> <br/> <b>Alasan</b>: <span class='text-grey-400'>" + $('#alasan').val() + "</span>",
+										width: 600,
+										icon: "success",
+										buttonsStyling: !1,
+										confirmButtonText: "Ok, got it!",
+										customClass: {
+											confirmButton: "btn fw-bold btn-primary"
+										}
+									});
+								} else {
+									Swal.fire({
+										html: r + " tidak jadi dibatalkan.",
+										icon: "error",
+										buttonsStyling: !1,
+										confirmButtonText: "Ok, got it!",
+										customClass: {
+											confirmButton: "btn fw-bold btn-primary"
+										}
+									});
+								}
+							}
+						)
+					} else {
+						Swal.fire({
+                            html: r + " tidak jadi dibatalkan.",
+                            icon: "error",
+                            buttonsStyling: !1,
+                            confirmButtonText: "Ok, got it!",
+                            customClass: {
+                                confirmButton: "btn fw-bold btn-primary"
+                            }
+                        });
+					}
+				});
+		} else {
+			Swal.fire({
+				html: "Berhasil mengubah status penerbitan",
+				icon: "success",
+				timer: 1000,
+				customClass: {
+					confirmButton: "btn fw-bold btn-primary"
+				},
+				showCancelButton: false,
+				showConfirmButton: false
+			})	
+		}		
 	};
 	
 	const dataSet = populateDataSet(getRandom(500,1000));
-
-	var t = new DataTable('#example', {
-		data: dataSet,
-		scrollX: true,
-		"searching": true,
-		filter:true,
-		fixedColumns: {
-            start: 3,
-            end: 0
-        },
-	});
+	var t;
+	var loadDataTable = function(){
+		t = new DataTable('#example', {
+			data: dataSet,
+			scrollX: true,
+			"searching": true,
+			filter:true,
+			fixedColumns: {
+				start: 3,
+				end: 0
+			},
+		});
+	};
+	loadDataTable();
 	document.querySelector('[data-example-filter="search"]').addEventListener("keyup", (function(e) {
                 t.search(e.target.value).draw()
-            }))
-	$('#unduhExcel').on('click', function(){
+            }));
+	/*$('#unduhExcel').on('click', function(){
 		$('.ajax-loader').css('visibility', 'visible');
 		t.page.len( -1 ).draw();
 		var myInt = Number(new Date());
@@ -339,9 +438,24 @@
 			t.page.len(10).draw();
 			$('.ajax-loader').css('visibility', 'hidden');
 		}, 2000)
-		
-	})
-	
+	});*/
+	var exportButtons = () => {
+		var myInt = Number(new Date()).toString();
+        const documentTitle = 'ISBN Report ' + myInt;
+        var buttons = new $.fn.dataTable.Buttons(t, {
+            buttons: [
+                {
+                    extend: 'excelHtml5',
+                    title: documentTitle,
+					text:'<i class="ki-outline ki-exit-up fs-2"></i>Export Data',
+                },
+            ]
+        }).container().appendTo($('#unduhExcel'));
+		const target = document.querySelector('#unduhExcel');
+        target.click();
+    }
+	exportButtons();
+
 </script>
 
 </html>

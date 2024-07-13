@@ -17,7 +17,7 @@
 						<div class="page-title d-flex flex-column justify-content-center gap-1 me-3">
 							<!--begin::Title-->
 							<h1 class="page-heading d-flex flex-column justify-content-center text-gray-900 fw-bold fs-3 m-0">
-								Data ISBN</h1>
+								Tambah/Ubah Permohonan ISBN</h1>
 							<!--end::Title-->
 							<!--begin::Breadcrumb-->
 							<ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0">
@@ -32,7 +32,7 @@
 								</li>
 								<!--end::Item-->
 								<!--begin::Item-->
-								<li class="breadcrumb-item text-muted">Permonan ISBN BARU</li>
+								<li class="breadcrumb-item text-muted">Tambah/ubah permohonan ISBN</li>
 								<!--end::Item-->
 							</ul>
 							<!--end::Breadcrumb-->

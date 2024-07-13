@@ -424,21 +424,6 @@
 	document.querySelector('[data-example-filter="search"]').addEventListener("keyup", (function(e) {
                 t.search(e.target.value).draw()
             }));
-	/*$('#unduhExcel').on('click', function(){
-		$('.ajax-loader').css('visibility', 'visible');
-		t.page.len( -1 ).draw();
-		var myInt = Number(new Date());
-		filename = "data_isbn_" + myInt.toString();
-		var a = document.createElement('a');
-		var data_type = 'data:application/vnd.ms-excel';
-		a.href = data_type + ', ' + encodeURIComponent($('#example').parent().html());
-		a.download = filename + '.xls';
-		setTimeout(function(){
-			a.click();
-			t.page.len(10).draw();
-			$('.ajax-loader').css('visibility', 'hidden');
-		}, 2000)
-	});*/
 	var exportButtons = () => {
 		var myInt = Number(new Date()).toString();
         const documentTitle = 'ISBN Report ' + myInt;

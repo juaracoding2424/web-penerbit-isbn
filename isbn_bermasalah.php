@@ -30,7 +30,7 @@
 						<div class="page-title d-flex flex-column justify-content-center gap-1 me-3">
 							<!--begin::Title-->
 							<h1 class="page-heading d-flex flex-column justify-content-center text-gray-900 fw-bold fs-3 m-0">
-								Data ISBN</h1>
+								Permohonan Bermasalah</h1>
 							<!--end::Title-->
 							<!--begin::Breadcrumb-->
 							<ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0">

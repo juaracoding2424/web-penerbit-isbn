@@ -27,7 +27,12 @@
             </div>
             <div class="menu-item">
                 <a class="menu-link" href="isbn_data.php">
-                    <span class="menu-icon"><i class="ki-outline  ki-questionnaire-tablet fs-2"></i></span> Data ISBN
+                    <span class="menu-icon"><i class="ki-outline ki-questionnaire-tablet fs-2"></i></span> Data ISBN
+                </a>
+            </div>
+            <div class="menu-item">
+                <a class="menu-link" href="support.php">
+                    <span class="menu-icon"><i class="ki-outline ki-chart fs-2"></i></span> Support
                 </a>
             </div>
             <!--end:Menu item-->

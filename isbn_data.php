@@ -208,11 +208,12 @@
 <!--end::Body-->
 <script>
 	var generateISBN13 = function() {
+		var digits = [9,7,8];
 		// Generate the first 9 digits of the ISBN randomly.
-		var digits = Array(9).fill(0).map(function () {
+		var n = Array(9).fill(0).map(function () {
 			return Math.floor(Math.random() * 10);
 		});
-
+		digits = digits.concat(n);
 		// Calculate the checksum for the ISBN.
 		var checksum = 0;
 		for (var i = 0; i < 9; i++) {

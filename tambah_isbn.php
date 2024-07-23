@@ -559,7 +559,7 @@
 			let htmlAppend = '<div id="kepengarangan_'+kepengarangan+'" class="row"><div class="col-lg-4 fv-row mb-1"><select name="authorRole[]" class="select2 form-select">';
 			htmlAppend += '<option selected="selected">penulis</option><option>penyunting</option><option>penyusun</option><option>editor</option>';
             htmlAppend += '<option>alih bahasa</option><option>ilustrator</option><option>desain sampul</option></select></div>';
-			htmlAppend += '<div class="col-lg-6 fv-row mb-1"><input type="text" name="namaPengarang[]" class="form-control form-control-lg form-control-solid" placeholder="Nama pengarang" /></div>';
+			htmlAppend += '<div class="col-lg-6 fv-row mb-1"><input type="text" name="namaPengarang[]" class="form-control form-control-lg form-control-solid" placeholder="Nama orang" /></div>';
 			htmlAppend += '<div class="col-lg-2 fv-row mb-1"><span class="btn btn-light-danger" onclick="deleteKepengarangan('+kepengarangan+')"><i class="ki-outline ki-trash" ></i></span></div></div>';
 			$('#kepengarangan').append(htmlAppend);
 			kepengarangan += 1;

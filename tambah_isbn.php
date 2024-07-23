@@ -17,7 +17,7 @@
 						<div class="page-title d-flex flex-column justify-content-center gap-1 me-3">
 							<!--begin::Title-->
 							<h1 class="page-heading d-flex flex-column justify-content-center text-gray-900 fw-bold fs-3 m-0">
-								Tambah/Ubah Permohonan ISBN</h1>
+								Tambah Permohonan ISBN</h1>
 							<!--end::Title-->
 							<!--begin::Breadcrumb-->
 							<ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0">
@@ -32,7 +32,7 @@
 								</li>
 								<!--end::Item-->
 								<!--begin::Item-->
-								<li class="breadcrumb-item text-muted">Tambah/ubah permohonan ISBN</li>
+								<li class="breadcrumb-item text-muted">Tambah permohonan ISBN</li>
 								<!--end::Item-->
 							</ul>
 							<!--end::Breadcrumb-->
@@ -53,10 +53,21 @@
 							<div class="flex flex-col gap-5 lg:gap-7.5">
 								<div class="card min-w-full">
 									<div class="card-header">
-										<h3 class="card-title">
+										<h3 class="card-title text-gray-800 text-hover-primary fs-2 fw-bold me-3">
 											General Info
 										</h3>
+										<div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3 m-3">
+											<!--begin::Number-->
+											<div class="d-flex align-items-center">
+												<div class="fs-4 fw-bold">Kuota Tersisa Hari Ini</div>
+											</div>
+											<!--end::Number-->
+											<!--begin::Label-->
+											<div class="fw-semibold fs-2x text-info fw-bold text-center">11</div>
+												<!--end::Label-->
+										</div>
 									</div>
+
 									<!--begin::Content-->
 										<div id="kt_account_settings_profile_details" class="collapse show">
 											<!--begin::Form-->
@@ -100,11 +111,6 @@
 															<div class="form-text">Allowed file types: png, jpg, jpeg.</div>
 															<!--end::Hint-->
 														</div>
-                                                        <div class="col-lg-3">
-                                                            <div class="card card-warning">
-                                                                Kesalahan dalam mengisi formulir permohonan, informasi tidak lengkap atau tidak akurat
-                                                            </div>
-                                                        </div>
 														<!--end::Col-->
 													</div>
 													<!--end::Input group-->
@@ -122,7 +128,7 @@
 																	<input type="text" name="title" class="form-control form-control-lg form-control-solid" placeholder="Judul Buku" value="The Soldier's Wife" />
 																</div>
                                                                 <div class="col-lg-1 fv-row">
-                                                                    <label class="col-lg-3 col-form-label required fw-semibold fs-6">:</label>
+                                                                    <label class="col-lg-3 col-form-label fw-semibold fs-6">:</label>
                                                                 </div>
 																<!--end::Col-->
                                                                 <!--begin::Col-->
@@ -147,25 +153,27 @@
                                                         </label>
 														<!--end::Label-->
                                                         <div class="col-lg-9">
-                                                            <div class="row">
+                                                            <div id="kepengarangan">
                                                                 <!--begin::Col-->
-                                                                <div class="col-lg-4 fv-row">
-                                                                    <select name="authorRole[]" class="select2 form-select">
-                                                                        <option selected="selected">penulis</option>
-                                                                        <option>penyunting</option>
-                                                                        <option>penyusun</option>
-                                                                        <option>editor</option>
-                                                                        <option>alih bahasa</option>
-                                                                        <option>ilustrator</option>
-                                                                        <option>desain sampul</option>
-                                                                    </select>
-                                                                </div>
-                                                                <div class="col-lg-6 fv-row">
-                                                                    <input type="text" name="namaPengarang[]" class="form-control form-control-lg form-control-solid" placeholder="Nama pengarang" />
-                                                                </div>
-                                                                <div class="col-lg-2 fv-row">
-                                                                    <a class="btn btn-primary" href=""><i class="ki-outline ki-plus" id="btnTambahPengarang"></i></a>
-                                                                </div>
+																<div id="kepengarangan_0" class="row">
+																	<div class="col-lg-4 fv-row mb-1">
+																		<select name="authorRole[]" class="select2 form-select">
+																			<option selected="selected">penulis</option>
+																			<option>penyunting</option>
+																			<option>penyusun</option>
+																			<option>editor</option>
+																			<option>alih bahasa</option>
+																			<option>ilustrator</option>
+																			<option>desain sampul</option>
+																		</select>
+																	</div>
+																	<div class="col-lg-6 fv-row mb-1">
+																		<input type="text" name="namaPengarang[]" class="form-control form-control-lg form-control-solid" placeholder="Nama orang" />
+																	</div>
+																	<div class="col-lg-2 fv-row mb-1">
+																		<span class="btn btn-primary" id="btnTambahPengarang"><i class="ki-outline ki-plus" ></i></span>
+																	</div>
+																</div>
                                                                 <!--end::Col-->
                                                             </div>
                                                         </div>
@@ -175,7 +183,7 @@
 													<div class="row mb-6">
 														<!--begin::Label-->
 														<label class="col-lg-3 col-form-label fw-semibold fs-6">
-															<span class="required">Penerbitan</span>
+															<span class="required">Perkiraan bulan dan tahun terbit</span>
 															<span class="ms-1" data-bs-toggle="tooltip" title="Isi perkiraan tanggal terbit">
 																<i class="ki-outline ki-information-5 text-gray-500 fs-6"></i>
 															</span>
@@ -341,32 +349,60 @@
 													<div class="row mb-6">
 														<!--begin::Label-->
 														<label class="col-lg-3 col-form-label fw-semibold fs-6">Dummy Buku yang akan terbit</label>
-														<!--begin::Label-->
-														<!--begin::Label-->
+														<!--end:: Label-->
 														<div class="col-lg-9 d-flex align-items-center">
-															
+														<div class="col-lg-9 d-flex align-items-center">
+															<!--begin::Dropzone-->
+															<div class="dropzone" id="dummy" >
+																<!--begin::Message-->
+																<div class="dz-message needsclick align-items-center">
+																	<!--begin::Icon-->
+																	<i class="ki-outline ki-file-up fs-3hx text-primary"></i>
+																	<!--end::Icon-->
+																	<!--begin::Info-->
+																	<div class="ms-4">
+																		<h3 class="fs-5 fw-bold text-gray-900 mb-1">Masukan file dummy buku</h3>
+																		<span class="fw-semibold fs-7 text-gray-500">Max: 100MB</span>
+																	</div>
+																	<!--end::Info-->
+																</div>
+															</div>
+															<!--end::Dropzone-->
+														</div>
 														</div>
 														<!--begin::Label-->
 													</div>
 													<!--end::Input group-->
 													<!--begin::Input group-->
-													<div class="row mb-0">
+													<div class="row mb-6">
 														<!--begin::Label-->
 														<label class="col-lg-3 col-form-label fw-semibold fs-6">File Attachment</label>
-														<!--begin::Label-->
-														<!--begin::Label-->
+														<!--end:: Label-->
 														<div class="col-lg-9 d-flex align-items-center">
-															
+															<!--begin::Dropzone-->
+															<div class="dropzone" id="attachments" style="width:100%">
+																<!--begin::Message-->
+																<div class="dz-message needsclick align-items-center">
+																	<!--begin::Icon-->
+																	<i class="ki-outline ki-file-up fs-3hx text-primary"></i>
+																	<!--end::Icon-->
+																	<!--begin::Info-->
+																	<div class="ms-4">
+																		<h3 class="fs-5 fw-bold text-gray-900 mb-1">Masukan attachment</h3>
+																		<span class="fw-semibold fs-7 text-gray-500">Upload up to 10 files, Max:150MB</span>
+																	</div>
+																	<!--end::Info-->
+																</div>
+															</div>
+															<!--end::Dropzone-->
 														</div>
-														<!--begin::Label-->
 													</div>
-													<!--end::Input group-->
 												</div>
 												<!--end::Card body-->
 												<!--begin::Actions-->
 												<div class="card-footer d-flex justify-content-end py-6 px-9">
-													<button type="reset" class="btn btn-light btn-active-light-primary me-2">Reset</button>
 													<button type="submit" class="btn btn-primary" id="btnSave">Simpan</button>
+													<button type="submit" class="btn btn-success ms-3" id="btnSaveNext">Simpan dan Selanjutnya</button>
 												</div>
 												<!--end::Actions-->
 											</form>
@@ -427,152 +463,6 @@
 	<i class="ki-outline ki-arrow-up"></i>
 </div>
 <!--end::Scrolltop-->
-		<!--begin::Modal - Two-factor authentication-->
-		<div class="modal fade" id="kt_modal_two_factor_authentication" tabindex="-1" aria-hidden="true">
-			<!--begin::Modal header-->
-			<div class="modal-dialog modal-dialog-centered mw-650px">
-				<!--begin::Modal content-->
-				<div class="modal-content">
-					<!--begin::Modal header-->
-					<div class="modal-header flex-stack">
-						<!--begin::Title-->
-						<h2>Choose An Authentication Method</h2>
-						<!--end::Title-->
-						<!--begin::Close-->
-						<div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
-							<i class="ki-outline ki-cross fs-1"></i>
-						</div>
-						<!--end::Close-->
-					</div>
-					<!--begin::Modal header-->
-					<!--begin::Modal body-->
-					<div class="modal-body scroll-y pt-10 pb-15 px-lg-17">
-						<!--begin::Options-->
-						<div data-kt-element="options">
-							<!--begin::Notice-->
-							<p class="text-muted fs-5 fw-semibold mb-10">In addition to your username and password, you’ll have to enter a code (delivered via app or SMS) to log into your account.</p>
-							<!--end::Notice-->
-							<!--begin::Wrapper-->
-							<div class="pb-10">
-								<!--begin::Option-->
-								<input type="radio" class="btn-check" name="auth_option" value="apps" checked="checked" id="kt_modal_two_factor_authentication_option_1" />
-								<label class="btn btn-outline btn-outline-dashed btn-active-light-primary p-7 d-flex align-items-center mb-5" for="kt_modal_two_factor_authentication_option_1">
-									<i class="ki-outline ki-setting-2 fs-4x me-4"></i>
-									<span class="d-block fw-semibold text-start">
-										<span class="text-gray-900 fw-bold d-block fs-3">Authenticator Apps</span>
-										<span class="text-muted fw-semibold fs-6">Get codes from an app like Google Authenticator, Microsoft Authenticator, Authy or 1Password.</span>
-									</span>
-								</label>
-								<!--end::Option-->
-								<!--begin::Option-->
-								<input type="radio" class="btn-check" name="auth_option" value="sms" id="kt_modal_two_factor_authentication_option_2" />
-								<label class="btn btn-outline btn-outline-dashed btn-active-light-primary p-7 d-flex align-items-center" for="kt_modal_two_factor_authentication_option_2">
-									<i class="ki-outline ki-message-text-2 fs-4x me-4"></i>
-									<span class="d-block fw-semibold text-start">
-										<span class="text-gray-900 fw-bold d-block fs-3">SMS</span>
-										<span class="text-muted fw-semibold fs-6">We will send a code via SMS if you need to use your backup login method.</span>
-									</span>
-								</label>
-								<!--end::Option-->
-							</div>
-							<!--end::Options-->
-							<!--begin::Action-->
-							<button class="btn btn-primary w-100" data-kt-element="options-select">Continue</button>
-							<!--end::Action-->
-						</div>
-						<!--end::Options-->
-						<!--begin::Apps-->
-						<div class="d-none" data-kt-element="apps">
-							<!--begin::Heading-->
-							<h3 class="text-gray-900 fw-bold mb-7">Authenticator Apps</h3>
-							<!--end::Heading-->
-							<!--begin::Description-->
-							<div class="text-gray-500 fw-semibold fs-6 mb-10">Using an authenticator app like 
-							<a href="https://support.google.com/accounts/answer/1066447?hl=en" target="_blank">Google Authenticator</a>, 
-							<a href="https://www.microsoft.com/en-us/account/authenticator" target="_blank">Microsoft Authenticator</a>, 
-							<a href="https://authy.com/download/" target="_blank">Authy</a>, or 
-							<a href="https://support.1password.com/one-time-passwords/" target="_blank">1Password</a>, scan the QR code. It will generate a 6 digit code for you to enter below. 
-							<!--begin::QR code image-->
-							<div class="pt-5 text-center">
-								<img src="assets/media/misc/qr.png" alt="" class="mw-150px" />
-							</div>
-							<!--end::QR code image--></div>
-							<!--end::Description-->
-							<!--begin::Notice-->
-							<div class="notice d-flex bg-light-warning rounded border-warning border border-dashed mb-10 p-6">
-								<!--begin::Icon-->
-								<i class="ki-outline ki-information fs-2tx text-warning me-4"></i>
-								<!--end::Icon-->
-								<!--begin::Wrapper-->
-								<div class="d-flex flex-stack flex-grow-1">
-									<!--begin::Content-->
-									<div class="fw-semibold">
-										<div class="fs-6 text-gray-700">If you having trouble using the QR code, select manual entry on your app, and enter your username and the code: 
-										<div class="fw-bold text-gray-900 pt-2">KBSS3QDAAFUMCBY63YCKI5WSSVACUMPN</div></div>
-									</div>
-									<!--end::Content-->
-								</div>
-								<!--end::Wrapper-->
-							</div>
-							<!--end::Notice-->
-							<!--begin::Form-->
-							<form data-kt-element="apps-form" class="form" action="#">
-								<!--begin::Input group-->
-								<div class="mb-10 fv-row">
-									<input type="text" class="form-control form-control-lg form-control-solid" placeholder="Enter authentication code" name="code" />
-								</div>
-								<!--end::Input group-->
-								<!--begin::Actions-->
-								<div class="d-flex flex-center">
-									<button type="reset" data-kt-element="apps-cancel" class="btn btn-light me-3">Cancel</button>
-									<button type="submit" data-kt-element="apps-submit" class="btn btn-primary">
-										<span class="indicator-label">Submit</span>
-										<span class="indicator-progress">Please wait... 
-										<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-									</button>
-								</div>
-								<!--end::Actions-->
-							</form>
-							<!--end::Form-->
-						</div>
-						<!--end::Options-->
-						<!--begin::SMS-->
-						<div class="d-none" data-kt-element="sms">
-							<!--begin::Heading-->
-							<h3 class="text-gray-900 fw-bold fs-3 mb-5">SMS: Verify Your Mobile Number</h3>
-							<!--end::Heading-->
-							<!--begin::Notice-->
-							<div class="text-muted fw-semibold mb-10">Enter your mobile phone number with country code and we will send you a verification code upon request.</div>
-							<!--end::Notice-->
-							<!--begin::Form-->
-							<form data-kt-element="sms-form" class="form" action="#">
-								<!--begin::Input group-->
-								<div class="mb-10 fv-row">
-									<input type="text" class="form-control form-control-lg form-control-solid" placeholder="Mobile number with country code..." name="mobile" />
-								</div>
-								<!--end::Input group-->
-								<!--begin::Actions-->
-								<div class="d-flex flex-center">
-									<button type="reset" data-kt-element="sms-cancel" class="btn btn-light me-3">Cancel</button>
-									<button type="submit" data-kt-element="sms-submit" class="btn btn-primary">
-										<span class="indicator-label">Submit</span>
-										<span class="indicator-progress">Please wait... 
-										<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-									</button>
-								</div>
-								<!--end::Actions-->
-							</form>
-							<!--end::Form-->
-						</div>
-						<!--end::SMS-->
-					</div>
-					<!--begin::Modal body-->
-				</div>
-				<!--end::Modal content-->
-			</div>
-			<!--end::Modal header-->
-		</div>
-		<!--end::Modal - Two-factor authentication-->
 <!--begin::Javascript-->
 <script>var hostUrl = "assets/";</script>
 <!--begin::Global Javascript Bundle(mandatory for all pages)-->
@@ -580,23 +470,8 @@
 <script src="assets/js/scripts.bundle.js"></script>
 <!--end::Global Javascript Bundle-->
 <!--begin::Custom Javascript(used for this page only)-->
-<script src="assets/js/custom/account/settings/signin-methods.js"></script>
-		<script src="assets/js/custom/account/settings/profile-details.js"></script>
-		<script src="assets/js/custom/account/settings/deactivate-account.js"></script>
-		<script src="assets/js/custom/pages/user-profile/general.js"></script>
-		<script src="assets/js/widgets.bundle.js"></script>
-		<script src="assets/js/custom/widgets.js"></script>
-		<script src="assets/js/custom/apps/chat/chat.js"></script>
-		<script src="assets/js/custom/utilities/modals/upgrade-plan.js"></script>
-		<script src="assets/js/custom/utilities/modals/create-campaign.js"></script>
-		<script src="assets/js/custom/utilities/modals/offer-a-deal/type.js"></script>
-		<script src="assets/js/custom/utilities/modals/offer-a-deal/details.js"></script>
-		<script src="assets/js/custom/utilities/modals/offer-a-deal/finance.js"></script>
-		<script src="assets/js/custom/utilities/modals/offer-a-deal/complete.js"></script>
-		<script src="assets/js/custom/utilities/modals/offer-a-deal/main.js"></script>
-		<script src="assets/js/custom/utilities/modals/two-factor-authentication.js"></script>
-		<script src="assets/js/custom/utilities/modals/users-search.js"></script>
-		<!--end::Custom Javascript-->
+		
+<!--end::Custom Javascript-->
 <!--begin::Custom Javascript(used for this page only)-->
 <script src="assets/js/widgets.bundle.js"></script>
 <script src="assets/js/custom/widgets.js"></script>
@@ -671,6 +546,47 @@
         });
 
         var selectKab = $('#select2-kabupaten');        
+		$('input[type=radio][name="status"]').on("change", function(){
+			if($(this).val() == "masalah"){
+				$('#divMasalah').css('display','');
+			} else {
+				$('#divMasalah').css('display','none');
+				$('textarea[name="problem"]').val('');
+			}
+		});
+		var kepengarangan = 1;
+		$('#btnTambahPengarang').on("click", function(){
+			let htmlAppend = '<div id="kepengarangan_'+kepengarangan+'" class="row"><div class="col-lg-4 fv-row mb-1"><select name="authorRole[]" class="select2 form-select">';
+			htmlAppend += '<option selected="selected">penulis</option><option>penyunting</option><option>penyusun</option><option>editor</option>';
+            htmlAppend += '<option>alih bahasa</option><option>ilustrator</option><option>desain sampul</option></select></div>';
+			htmlAppend += '<div class="col-lg-6 fv-row mb-1"><input type="text" name="namaPengarang[]" class="form-control form-control-lg form-control-solid" placeholder="Nama pengarang" /></div>';
+			htmlAppend += '<div class="col-lg-2 fv-row mb-1"><span class="btn btn-light-danger" onclick="deleteKepengarangan('+kepengarangan+')"><i class="ki-outline ki-trash" ></i></span></div></div>';
+			$('#kepengarangan').append(htmlAppend);
+			kepengarangan += 1;
+		});
+		var deleteKepengarangan = function(numb){
+			$('#kepengarangan_' + numb).remove();
+		};
+		new Dropzone("#attachments", {
+            url: "https://keenthemes.com/scripts/void.php",
+            paramName: "file",
+            maxFiles: 10,
+            maxFilesize: 150,
+            addRemoveLinks: !0,
+            accept: function (t, e) {
+                "justinbieber.jpg" == t.name ? e("Naha, you don't.") : e()
+            }
+        });
+		new Dropzone("#dummy", {
+            url: "https://keenthemes.com/scripts/void.php",
+            paramName: "file",
+            maxFiles: 1,
+            maxFilesize: 100,
+            addRemoveLinks: !0,
+            accept: function (t, e) {
+                "justinbieber.jpg" == t.name ? e("Naha, you don't.") : e()
+            }
+        })
 </script>
 
 </html>

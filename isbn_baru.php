@@ -72,7 +72,7 @@
 								<div class="d-flex align-items-center position-relative my-1">
 									<i class="ki-outline ki-magnifier fs-3 position-absolute ms-4"></i>
 									<input type="text" data-example-filter="search" class="form-control form-control-solid w-400px ps-12" 
-									placeholder="Search Judul, ISBN, Pengarang, etc" />
+									placeholder="Search Nomor Resi, Judul, ISBN, Pengarang, etc" />
 								</div>
 												<!--end::Search-->
 							</div>
@@ -93,7 +93,8 @@
 							<table class="table table-row-dashed table-hover no-wrap fs-8 gy-5" id="example" style="width:100%">
 								<thead>
 									<tr class="text-start text-gray-500 fw-bold fs-8 text-uppercase gs-0">
-										<th class="text-start min-w-60px pe-2">ID</th>
+										<th class="min-w-150px">Antrian ke-</th>
+										<th class="min-w-120px">Nomor Resi</th>
 										<th class="min-w-200px">Judul</th>
 										<th class="min-w-200px">Kepengarangan</th>
 										<th class="min-w-175px">Bulan/Tahun Terbit</th>
@@ -196,6 +197,16 @@
 	var extractColumn = function(arr, column) {
 		return arr.map(x => x[column]);
 	}
+	var generateRandomString = (length) => {
+		let result = '';
+		const characters =
+			'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+		const charactersLength = characters.length;
+		for (let i = 0; i < length; i++) {
+			result += characters.charAt(Math.floor(Math.random() * charactersLength));
+		}
+		return result.toUpperCase();
+	};
 	var batalkanPermohonan = function(i){
 		let arrNomor = extractColumn(dataSet, 0);
 		let position = arrNomor.indexOf((i+1).toString());
@@ -261,6 +272,7 @@
 		for( var i = 1; i<=numb; i++ ){
 			dataSetPop.push([
 				i.toString(),
+				generateRandomString(10),
 				RandomTitle(),
 				populateKepengarangan(),
 				Intl.DateTimeFormat('id', { month: 'short' }).format(new Date(getRandom(6,12).toString())) + " " + getRandom(2024,2025).toString(),

@@ -257,7 +257,11 @@
                     	confirmButton: "btn fw-bold btn-primary"
                         }
                 })
-	}
+	};
+	var sumber = [
+		'<span class="badge badge-success">Web</span>', 
+		'<span class="badge badge-info">API</span>', 
+	];
 	var randomPenyerahan = function(){
 		const penyerahan = getRandom(0,2);
 		if(penyerahan == 0){
@@ -291,7 +295,7 @@
 		for( var i = 1; i<=numb; i++ ){
 			dataSetPop.push([
 				i.toString(),
-				generateISBN13(),
+				generateISBN13() + " " + sumber[getRandom(0,2)],
 				'<div class="d-flex align-items-center"><img src='+images[getRandom(0,11)]+' class=" symbol h-50px"></img><span class="ms-5"> ' + RandomTitle() + '</span></div>',
 				populateKepengarangan(),
 				Intl.DateTimeFormat('id', { month: 'short' }).format(new Date(getRandom(1,12).toString())) + " " + getRandom(2022,2024).toString(),

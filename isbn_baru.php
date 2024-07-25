@@ -99,6 +99,7 @@
 										<th class="min-w-200px">Kepengarangan</th>
 										<th class="min-w-175px">Bulan/Tahun Terbit</th>
 										<th class="min-w-175px">Tanggal Permohonan</th>
+										<th class="min-w-120px">Sumber</th>
 										<th class="text-inline min-w-250px">Actions</th>										
 									</tr>
 								</thead>
@@ -258,6 +259,10 @@
 	var rolePengarang = [
 		'penulis', 'penyunting', 'penyusun', 'ilustrator', 'alih bahasa', 'editor'
 	]
+	var sumber = [
+		'<span class="badge badge-success">Web</span>', 
+		'<span class="badge badge-info">API</span>', 
+	]
 	var populateKepengarangan = function(){
 		var jmlPengarang = getRandom(1,5);
 		var pengarang = '';
@@ -277,6 +282,7 @@
 				populateKepengarangan(),
 				Intl.DateTimeFormat('id', { month: 'short' }).format(new Date(getRandom(6,12).toString())) + " " + getRandom(2024,2025).toString(),
 				randomDate(new Date(2024, 5, 1), new Date()),
+				sumber[getRandom(0,2)],
 				'<a class="badge badge-info h-30px m-1" href="tambah_isbn.php">Ubah Data</a><a class="badge badge-danger h-30px m-1" href="#" onclick="batalkanPermohonan('+(i-1)+')">Batalkan Permohonan</a>',
 			]);
 		}

@@ -210,7 +210,7 @@
 	var batalkanPermohonan = function(i){
 		let arrNomor = extractColumn(dataSet, 0);
 		let position = arrNomor.indexOf((i+1).toString());
-		r = dataSet[position][1];
+		r = dataSet[position][2];
 		Swal.fire({
                     html: "Anda yakin akan membatalkan permohonan ISBN, dengan <b>judul</b>: <span class='badge badge-info'> "+r+" </span>?",
 					icon: "warning",
@@ -290,10 +290,10 @@
 			scrollX: true,
 			"searching": true,
 			filter:true,
-			fixedColumns: {
+			/*fixedColumns: {
 				start: 3,
 				end: 0
-			},
+			},*/
 		});
 	}
 	document.querySelector('[data-example-filter="search"]').addEventListener("keyup", (function(e) {

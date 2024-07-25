@@ -17,7 +17,7 @@
 						<div class="page-title d-flex flex-column justify-content-center gap-1 me-3">
 							<!--begin::Title-->
 							<h1 class="page-heading d-flex flex-column justify-content-center text-gray-900 fw-bold fs-3 m-0">
-								Tambah Permohonan ISBN</h1>
+								Perbaiki Permohonan ISBN</h1>
 							<!--end::Title-->
 							<!--begin::Breadcrumb-->
 							<ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0">
@@ -32,7 +32,7 @@
 								</li>
 								<!--end::Item-->
 								<!--begin::Item-->
-								<li class="breadcrumb-item text-muted">Tambah permohonan ISBN</li>
+								<li class="breadcrumb-item text-muted">permohonan bermasalah</li>
 								<!--end::Item-->
 							</ul>
 							<!--end::Breadcrumb-->
@@ -54,7 +54,7 @@
 								<div class="card min-w-full">
 									<div class="card-header">
 										<h3 class="card-title text-gray-800 text-hover-primary fs-2 fw-bold me-3">
-											General Info
+											General Info <span class="badge badge-light-info me-3 ms-3">Perbaikan permohonan ISBN akan masuk dalam antrian permohonan baru</span>
 										</h3>
 										<div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3 m-3">
 											<!--begin::Number-->
@@ -73,6 +73,18 @@
 											<!--begin::Form-->
 											<form id="kt_account_profile_details_form" class="form">
 												<!--begin::Card body-->
+                                                <div class="card-header">
+                                                    <div class="d-flex align-items-center p-5 mb-10">
+                                                        <i class="ki-solid ki-shield-cross fs-4hx text-danger me-4"><span
+                                                                class="path1"></span><span class="path2"></span></i>
+                                                        <div class="rounded border p-10  d-flex flex-column">
+                                                            <div class="d-flex flex-column">
+                                                                <h2 class="mb-1 text-danger">Detail masalah</h2>
+                                                                <span>Judul tidak sama seperti info dalam halaman judul. Penerbit atau pengarang tidak memenuhi kriteria yang ditetapkan oleh Perpustakaan Nasional RI</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
 												<div class="card-body border-top p-9">
 													<!--begin::Input group-->
 													<div class="row mb-6">
@@ -367,7 +379,8 @@
 														<!--end::Col-->
 													</div>
 													<!--end::Input group-->
-                                                    <div class="row mb-6">
+                                                    <!--begin::Input group-->
+													<div class="row mb-6">
 														<!--begin::Label-->
 														<label class="col-lg-3 col-form-label fw-semibold fs-6">Dummy Buku yang akan terbit</label>
                                                         <div class="col-lg-3 col-form-label ">

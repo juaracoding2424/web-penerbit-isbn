@@ -405,10 +405,10 @@
 			scrollX: true,
 			"searching": true,
 			filter:true,
-			fixedColumns: {
-				start: 3,
+			/*fixedColumns: {
+				start: 1,
 				end: 0
-			},
+			},*/
 		});
 	};
 	loadDataTable();

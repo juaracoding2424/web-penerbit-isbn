@@ -286,7 +286,7 @@
 				Intl.DateTimeFormat('id', { month: 'short' }).format(new Date(getRandom(1,12).toString())) + " " + getRandom(2022,2024).toString(),
 				randomDate(new Date(2023, 0, 1), new Date(2024, 2, 20)),
 				randomMasalah(),
-				'<a class="badge badge-primary h-30px m-1" onClick="perbaikiPermohonan('+(i-1)+')">Perbaiki permohonan</a><a class="badge badge-danger h-30px m-1" onclick="batalkanPermohonan('+(i-1)+')">Batalkan Permohonan</a>',
+				'<a class="badge badge-primary h-30px m-1" href="isbn_perbaikan.php">Perbaiki permohonan</a><a class="badge badge-danger h-30px m-1" onclick="batalkanPermohonan('+(i-1)+')">Batalkan Permohonan</a>',
 			]);
 		}
 		return dataSetPop;
@@ -300,10 +300,10 @@
 			scrollX: true,
 			"searching": true,
 			filter:true,
-			fixedColumns: {
+			/*fixedColumns: {
 				start: 2,
 				end: 0
-			},
+			},*/
 		});
 	}
 	document.querySelector('[data-example-filter="search"]').addEventListener("keyup", (function(e) {
